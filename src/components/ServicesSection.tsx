@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   Car, Building2, Wrench, TreePine, Shield, Truck, Sparkles,
   Users, Home, BookOpen, Zap, Cpu, Package, Cable, Scissors,
