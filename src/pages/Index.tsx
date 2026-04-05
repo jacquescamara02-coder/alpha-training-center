@@ -8,6 +8,7 @@ import QuoteForm from "@/components/QuoteForm";
 import MapSection from "@/components/MapSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
       <MapSection />
       <Footer />
       <WhatsAppButton />
+      <ScrollToTop />
     </div>
   );
 };
