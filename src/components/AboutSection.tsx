@@ -1,13 +1,47 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Target, Users, Award, TrendingUp } from "lucide-react";
 import logo from "@/assets/logo.jpeg";
 
 const stats = [
-  { icon: Users, value: "5000+", label: "Élèves formés" },
-  { icon: Award, value: "20+", label: "Services offerts" },
-  { icon: TrendingUp, value: "10+", label: "Années d'expérience" },
-  { icon: Target, value: "4", label: "Sites à travers la RDC" },
+  { icon: Users, end: 5000, suffix: "+", label: "Élèves formés" },
+  { icon: Award, end: 20, suffix: "+", label: "Services offerts" },
+  { icon: TrendingUp, end: 10, suffix: "+", label: "Années d'expérience" },
+  { icon: Target, end: 4, suffix: "", label: "Sites à travers la RDC" },
 ];
+
+const useCountUp = (end: number, duration = 2000, start = false) => {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let raf: number;
+    const startTime = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(eased * end));
+      if (progress < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [start, end, duration]);
+  return value;
+};
+
+const StatCard = ({ stat, index, counting }: { stat: typeof stats[0]; index: number; counting: boolean }) => {
+  const value = useCountUp(stat.end, stat.end > 100 ? 2500 : 1500, counting);
+  return (
+    <div
+      className="reveal opacity-0 translate-y-8 transition-all duration-700 group rounded-xl border border-border bg-background p-5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
+      style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
+    >
+      <stat.icon className="mb-2 h-5 w-5 text-primary" />
+      <p className="font-heading text-2xl font-black text-foreground">
+        {value}{stat.suffix}
+      </p>
+      <p className="text-xs text-muted-foreground">{stat.label}</p>
+    </div>
+  );
+};
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
