@@ -28,8 +28,23 @@ const services = [
 ];
 
 const ServicesSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("animate-in-view");
+        });
+      },
+      { threshold: 0.1 }
+    );
+    sectionRef.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="services" className="py-24">
+    <section id="services" ref={sectionRef} className="py-24">
       <div className="container mx-auto px-4">
         <div className="mb-16 text-center">
           <span className="mb-2 inline-block rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
@@ -46,7 +61,8 @@ const ServicesSection = () => {
           {services.map((s, i) => (
             <div
               key={i}
-              className="group rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
+              className="reveal opacity-0 translate-y-8 transition-all duration-500 group rounded-xl border border-border bg-card p-6 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
+              style={{ transitionDelay: `${i * 0.05}s` }}
             >
               <div className="mb-3 inline-flex rounded-lg bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                 <s.icon className="h-6 w-6" />
