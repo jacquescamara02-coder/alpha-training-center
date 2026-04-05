@@ -121,8 +121,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Carousel controls */}
-          <div className="mt-16 flex items-center gap-4">
+          <div className="mt-12 sm:mt-16 flex items-center justify-center md:justify-start gap-4">
             <button
               onClick={prev}
               className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/50 text-foreground backdrop-blur-sm transition-all hover:border-primary hover:text-primary"
