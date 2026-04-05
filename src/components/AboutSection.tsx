@@ -45,6 +45,7 @@ const StatCard = ({ stat, index, counting }: { stat: typeof stats[0]; index: num
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [counting, setCounting] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
