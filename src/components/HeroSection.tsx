@@ -80,7 +80,7 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 flex min-h-screen items-center pt-20">
         <div className="container mx-auto px-4 py-20">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl text-center md:text-left mx-auto md:mx-0">
             {slides.map((slide, i) => (
               <div
                 key={i}
@@ -99,13 +99,13 @@ const HeroSection = () => {
                   <br />
                   <span className="text-gradient">{slide.titleAccent}</span>
                 </h1>
-                <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                <p className="mt-6 max-w-lg text-base sm:text-lg leading-relaxed text-muted-foreground animate-fade-in mx-auto md:mx-0" style={{ animationDelay: "0.2s" }}>
                   {slide.description}
                 </p>
               </div>
             ))}
 
-            <div className="mt-8 flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+            <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4 animate-fade-in" style={{ animationDelay: "0.3s" }}>
               <a
                 href="#devis"
                 className="group inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground transition-all hover:opacity-90 glow-green"
