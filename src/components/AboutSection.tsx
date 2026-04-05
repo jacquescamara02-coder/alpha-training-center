@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Target, Users, Award, TrendingUp } from "lucide-react";
-import logo from "@/assets/logo.jpeg";
+import flyer1 from "@/assets/flyer1.jpeg";
+import flyer2 from "@/assets/flyer2.jpeg";
 
 const stats = [
   { icon: Users, end: 5000, suffix: "+", label: "Élèves formés" },
@@ -8,6 +9,8 @@ const stats = [
   { icon: TrendingUp, end: 10, suffix: "+", label: "Années d'expérience" },
   { icon: Target, end: 4, suffix: "", label: "Sites à travers la RDC" },
 ];
+
+const images = [flyer1, flyer2];
 
 const useCountUp = (end: number, duration = 2000, start = false) => {
   const [value, setValue] = useState(0);
@@ -46,6 +49,14 @@ const StatCard = ({ stat, index, counting }: { stat: typeof stats[0]; index: num
 const AboutSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [counting, setCounting] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -71,16 +82,35 @@ const AboutSection = () => {
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="grid items-center gap-16 lg:grid-cols-2">
-          {/* Image side */}
+          {/* Image carousel */}
           <div className="reveal opacity-0 translate-y-8 transition-all duration-700">
             <div className="relative">
               <div className="absolute -inset-4 rounded-2xl bg-primary/10 blur-2xl" />
-              <img
-                src={logo}
-                alt="Alpha Training Center"
-                className="relative z-10 w-full max-w-md rounded-2xl shadow-2xl mx-auto"
-                loading="lazy"
-              />
+              <div className="relative z-10 w-full max-w-md mx-auto overflow-hidden rounded-2xl shadow-2xl aspect-[3/4]">
+                {images.map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt={`Alpha Training Center flyer ${i + 1}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
+                      i === currentImage ? "opacity-100 scale-100" : "opacity-0 scale-105"
+                    }`}
+                    loading="lazy"
+                  />
+                ))}
+              </div>
+              {/* Dots */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                {images.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentImage(i)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      i === currentImage ? "w-6 bg-primary" : "w-2 bg-muted-foreground/30"
+                    }`}
+                  />
+                ))}
+              </div>
               {/* Floating badge */}
               <div className="absolute -bottom-4 -right-4 z-20 rounded-xl border border-primary/30 bg-card p-4 shadow-xl glow-green sm:right-4">
                 <p className="text-2xl font-black text-primary font-heading">10+</p>
