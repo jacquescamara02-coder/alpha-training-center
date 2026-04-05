@@ -9,8 +9,14 @@ const locations = [
 
 const MapSection = () => {
   return (
-    <section id="contact" className="py-24">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="relative py-24 overflow-hidden bg-gradient-to-br from-secondary via-background to-secondary">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-accent/10 blur-3xl" />
+      </div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--primary)/0.08),transparent_60%)]" />
+      <div className="container relative z-10 mx-auto px-4">
         <div className="mb-16 text-center">
           <span className="mb-2 inline-block rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
             Nos Emplacements
