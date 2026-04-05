@@ -53,6 +53,7 @@ const AboutSection = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate-in-view");
+            setCounting(true);
           }
         });
       },
