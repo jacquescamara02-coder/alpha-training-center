@@ -109,15 +109,7 @@ const AboutSection = () => {
             {/* Stats */}
             <div className="mt-10 grid grid-cols-2 gap-4">
               {stats.map((stat, i) => (
-                <div
-                  key={i}
-                  className="reveal opacity-0 translate-y-8 transition-all duration-700 group rounded-xl border border-border bg-background p-5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
-                  style={{ transitionDelay: `${0.2 + i * 0.1}s` }}
-                >
-                  <stat.icon className="mb-2 h-5 w-5 text-primary" />
-                  <p className="font-heading text-2xl font-black text-foreground">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground">{stat.label}</p>
-                </div>
+                <StatCard key={i} stat={stat} index={i} counting={counting} />
               ))}
             </div>
           </div>
