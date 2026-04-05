@@ -26,7 +26,7 @@ const QuoteForm = () => {
   return (
     <section id="devis" className="relative border-t border-border py-24 overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(160 10% 6%) 0%, hsl(145 40% 10%) 50%, hsl(160 10% 6%) 100%)" }}>
       <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, hsl(145 70% 42% / 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, hsl(200 80% 55% / 0.2) 0%, transparent 50%)" }} />
-      <div className="container mx-auto max-w-2xl px-4">
+      <div className="container relative z-10 mx-auto max-w-2xl px-4">
         <div className="mb-12 text-center">
           <span className="mb-2 inline-block rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
             Devis Gratuit
