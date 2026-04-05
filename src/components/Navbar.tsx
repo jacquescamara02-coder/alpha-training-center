@@ -18,7 +18,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-40 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
         <a href="#accueil" className="flex items-center gap-3">
-          <img src={logo} alt="ATC Logo" className="h-16 w-auto rounded-lg" />
+          <img src={logo} alt="ATC Logo" className="h-20 w-auto rounded-lg" />
           <span className="hidden font-heading text-lg font-bold text-foreground sm:block">
             Alpha Training Center
           </span>
