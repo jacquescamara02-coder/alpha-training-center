@@ -129,27 +129,29 @@ const TestimonialsSection = () => {
       </div>
 
       {/* Marquee */}
-      <div className="relative">
-        <div className="flex animate-marquee gap-6">
-          {[...testimonials, ...testimonials].map((t, i) => (
-            <div
-              key={i}
-              className="w-[350px] flex-shrink-0 rounded-xl border border-border bg-background p-6"
-            >
-              <div className="mb-3 flex gap-1">
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} className="h-4 w-4 fill-primary text-primary" />
-                ))}
+      {testimonials.length > 0 && (
+        <div className="relative overflow-hidden">
+          <div className="flex w-max animate-marquee gap-6">
+            {[...testimonials, ...testimonials, ...testimonials].map((t, i) => (
+              <div
+                key={i}
+                className="w-[350px] flex-shrink-0 rounded-xl border border-border bg-background p-6"
+              >
+                <div className="mb-3 flex gap-1">
+                  {Array.from({ length: t.rating }).map((_, j) => (
+                    <Star key={j} className="h-4 w-4 fill-primary text-primary" />
+                  ))}
+                </div>
+                <p className="mb-4 text-sm leading-relaxed text-muted-foreground">"{t.text}"</p>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">{t.role}</p>
+                </div>
               </div>
-              <p className="mb-4 text-sm leading-relaxed text-muted-foreground">"{t.text}"</p>
-              <div>
-                <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };
