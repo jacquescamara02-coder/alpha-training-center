@@ -43,7 +43,7 @@ const services = [
   { icon: Package, label: "Livraison Matériaux", image: imgLivraison },
   { icon: Cable, label: "Installation Courant", image: imgInstallationCourant },
   { icon: Scissors, label: "Coupe & Couture", image: imgCouture },
-  { icon: ArrowLeftRight, label: "Agences de Transfert", image: imgTransfert },
+  { icon: ArrowLeftRight, label: "Transfert d'Argent & de Colis", image: imgTransfert },
   { icon: Globe, label: "Import & Export", image: imgImportExport },
   { icon: Mountain, label: "Mine", image: imgMine },
   { icon: HeartPulse, label: "Soins Médicaux", image: imgSoinsMedicaux },
