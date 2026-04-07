@@ -29,6 +29,15 @@ const Footer = () => {
           </div>
           <div className="flex items-center gap-4">
             <a
+              href="https://www.facebook.com/share/1HpiUZAEsB/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full bg-foreground/10 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+            >
+              <FacebookIcon />
+              <span>Facebook</span>
+            </a>
+            <a
               href="https://vt.tiktok.com/ZSH5Maxso/"
               target="_blank"
               rel="noopener noreferrer"
