@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ZoomIn, Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -33,32 +33,39 @@ interface GalleryItem {
   src: string;
   title: string;
   category: Exclude<Category, "Tout">;
+  type: "image" | "video";
 }
 
 const staticItems: GalleryItem[] = [
-  { src: construction1, title: "Construction en cours", category: "Construction" },
-  { src: construction2, title: "Alpha Training Center", category: "Construction" },
-  { src: construction3, title: "Chantier de construction", category: "Construction" },
-  { src: formation1, title: "Formation en salle", category: "Formation" },
-  { src: formation2, title: "Auto-école ATC", category: "Formation" },
-  { src: formation3, title: "Séminaire de formation", category: "Formation" },
-  { src: formation4, title: "Formation pratique engins", category: "Formation" },
-  { src: installation1, title: "Livraison de matériaux", category: "Installation" },
-  { src: installation2, title: "Véhicules tout-terrain", category: "Installation" },
-  { src: divers1, title: "Signature de partenariat", category: "Divers" },
-  { src: divers2, title: "Réunion d'équipe", category: "Divers" },
-  { src: equipe1, title: "Équipe ATC sur le terrain", category: "Divers" },
-  { src: equipe2, title: "Apprenants ATC", category: "Formation" },
-  { src: equipe3, title: "Équipe avec engins", category: "Construction" },
-  { src: reunion1, title: "Réunion de direction", category: "Divers" },
-  { src: autoecole1, title: "Véhicule auto-école", category: "Formation" },
-  { src: autoecole2, title: "Véhicule ATC", category: "Formation" },
-  { src: autoecole3, title: "Chauffeur ATC", category: "Formation" },
-  { src: couture1, title: "Machines à coudre", category: "Formation" },
-  { src: informatique1, title: "Formation informatique", category: "Formation" },
-  { src: autoecole4, title: "Véhicule auto-école ATC", category: "Formation" },
-  { src: autoecole5, title: "Véhicule ATC Kolwezi", category: "Formation" },
-  { src: autoecole6, title: "Auto-école ATC Lubumbashi", category: "Formation" },
+  { src: construction1, title: "Construction en cours", category: "Construction", type: "image" },
+  { src: construction2, title: "Alpha Training Center", category: "Construction", type: "image" },
+  { src: construction3, title: "Chantier de construction", category: "Construction", type: "image" },
+  { src: formation1, title: "Formation en salle", category: "Formation", type: "image" },
+  { src: formation2, title: "Auto-école ATC", category: "Formation", type: "image" },
+  { src: formation3, title: "Séminaire de formation", category: "Formation", type: "image" },
+  { src: formation4, title: "Formation pratique engins", category: "Formation", type: "image" },
+  { src: installation1, title: "Livraison de matériaux", category: "Installation", type: "image" },
+  { src: installation2, title: "Véhicules tout-terrain", category: "Installation", type: "image" },
+  { src: divers1, title: "Signature de partenariat", category: "Divers", type: "image" },
+  { src: divers2, title: "Réunion d'équipe", category: "Divers", type: "image" },
+  { src: equipe1, title: "Équipe ATC sur le terrain", category: "Divers", type: "image" },
+  { src: equipe2, title: "Apprenants ATC", category: "Formation", type: "image" },
+  { src: equipe3, title: "Équipe avec engins", category: "Construction", type: "image" },
+  { src: reunion1, title: "Réunion de direction", category: "Divers", type: "image" },
+  { src: autoecole1, title: "Véhicule auto-école", category: "Formation", type: "image" },
+  { src: autoecole2, title: "Véhicule ATC", category: "Formation", type: "image" },
+  { src: autoecole3, title: "Chauffeur ATC", category: "Formation", type: "image" },
+  { src: couture1, title: "Machines à coudre", category: "Formation", type: "image" },
+  { src: informatique1, title: "Formation informatique", category: "Formation", type: "image" },
+  { src: autoecole4, title: "Véhicule auto-école ATC", category: "Formation", type: "image" },
+  { src: autoecole5, title: "Véhicule ATC Kolwezi", category: "Formation", type: "image" },
+  { src: autoecole6, title: "Auto-école ATC Lubumbashi", category: "Formation", type: "image" },
+  // Videos
+  { src: "/videos/video-1.mp4", title: "ATC en action", category: "Formation", type: "video" },
+  { src: "/videos/video-2.mp4", title: "Formation sur le terrain", category: "Formation", type: "video" },
+  { src: "/videos/video-3.mp4", title: "Activités ATC", category: "Divers", type: "video" },
+  { src: "/videos/video-4.mp4", title: "Nos réalisations vidéo", category: "Construction", type: "video" },
+  { src: "/videos/video-5.mp4", title: "Équipe ATC au travail", category: "Divers", type: "video" },
 ];
 
 const categories: Category[] = ["Tout", "Construction", "Formation", "Installation", "Divers"];
@@ -69,7 +76,6 @@ const GallerySection = () => {
   const [dbItems, setDbItems] = useState<GalleryItem[]>([]);
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  // Fetch DB images
   useEffect(() => {
     const fetchImages = async () => {
       const { data } = await supabase
@@ -81,6 +87,7 @@ const GallerySection = () => {
           src: img.image_url,
           title: img.title,
           category: img.category as Exclude<Category, "Tout">,
+          type: "image" as const,
         })));
       }
     };
@@ -117,6 +124,8 @@ const GallerySection = () => {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [lightbox, navigate]);
+
+  const currentItem = lightbox !== null ? filtered[lightbox] : null;
 
   return (
     <section id="gallery" ref={sectionRef} className="py-20 bg-muted/30">
@@ -157,21 +166,42 @@ const GallerySection = () => {
               style={{ transitionDelay: `${i * 0.06}s` }}
               onClick={() => setLightbox(i)}
             >
-              <img
-                src={item.src}
-                alt={item.title}
-                loading="lazy"
-                width={800}
-                height={600}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
+              {item.type === "video" ? (
+                <video
+                  src={item.src}
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  onMouseOver={(e) => (e.target as HTMLVideoElement).play()}
+                  onMouseOut={(e) => { const v = e.target as HTMLVideoElement; v.pause(); v.currentTime = 0; }}
+                />
+              ) : (
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  loading="lazy"
+                  width={800}
+                  height={600}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                <ZoomIn className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-8 w-8 text-white/90" />
+                {item.type === "video" ? (
+                  <Play className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-10 w-10 text-white/90 drop-shadow-lg" />
+                ) : (
+                  <ZoomIn className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-8 w-8 text-white/90" />
+                )}
                 <span className="text-xs font-semibold text-primary-foreground bg-primary/80 rounded-full px-3 py-1 w-fit mb-1">
                   {item.category}
                 </span>
                 <span className="text-white font-semibold text-sm">{item.title}</span>
               </div>
+              {item.type === "video" && (
+                <div className="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-0.5 rounded-full font-medium">
+                  Vidéo
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -179,13 +209,24 @@ const GallerySection = () => {
 
       <Dialog open={lightbox !== null} onOpenChange={() => setLightbox(null)}>
         <DialogContent className="max-w-5xl w-[95vw] p-0 border-none bg-black/95 overflow-hidden">
-          {lightbox !== null && (
+          {currentItem && (
             <div className="relative flex items-center justify-center min-h-[60vh]">
-              <img
-                src={filtered[lightbox].src}
-                alt={filtered[lightbox].title}
-                className="max-h-[80vh] w-auto mx-auto object-contain"
-              />
+              {currentItem.type === "video" ? (
+                <video
+                  key={currentItem.src}
+                  src={currentItem.src}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="max-h-[80vh] w-auto mx-auto"
+                />
+              ) : (
+                <img
+                  src={currentItem.src}
+                  alt={currentItem.title}
+                  className="max-h-[80vh] w-auto mx-auto object-contain"
+                />
+              )}
               <button
                 onClick={() => navigate(-1)}
                 className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 text-white transition"
@@ -200,11 +241,11 @@ const GallerySection = () => {
               </button>
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-center">
                 <span className="inline-block px-3 py-1 rounded-full bg-primary/80 text-primary-foreground text-xs font-semibold mb-2">
-                  {filtered[lightbox].category}
+                  {currentItem.category}
                 </span>
-                <p className="text-white font-semibold text-lg">{filtered[lightbox].title}</p>
+                <p className="text-white font-semibold text-lg">{currentItem.title}</p>
                 <p className="text-white/60 text-sm mt-1">
-                  {lightbox + 1} / {filtered.length}
+                  {lightbox! + 1} / {filtered.length}
                 </p>
               </div>
             </div>
