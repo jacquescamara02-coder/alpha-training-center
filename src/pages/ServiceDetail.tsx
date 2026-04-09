@@ -53,6 +53,12 @@ const servicesData: Record<string, { icon: any; label: string; image: string; de
     details: ["Soudure à l'arc", "Soudure MIG/MAG", "Ajustage et assemblage mécanique", "Lecture de plans techniques", "Contrôle qualité des soudures"],
     duration: "3 à 12 mois"
   },
+  "mecanique": {
+    icon: Cog, label: "Mécanique", image: imgMecanique,
+    description: "Formation et services en mécanique automobile et industrielle. Nos mécaniciens qualifiés assurent l'entretien, la réparation et le diagnostic de tous types de véhicules et machines.",
+    details: ["Mécanique automobile générale", "Réparation de moteurs et boîtes de vitesses", "Diagnostic et entretien préventif", "Mécanique diesel et essence", "Formation pratique en atelier"],
+    duration: "6 à 12 mois"
+  },
   "menuiserie": {
     icon: TreePine, label: "Menuiserie", image: imgMenuiserie,
     description: "Formation et fabrication en menuiserie bois et aluminium. Création de meubles, portes, fenêtres et aménagements sur mesure.",
@@ -149,7 +155,7 @@ const servicesData: Record<string, { icon: any; label: string; image: string; de
 };
 
 const serviceOptions = [
-  "Auto École", "Construction", "Soudure & Ajustage", "Menuiserie", "Sécurité",
+  "Auto École", "Construction", "Soudure & Ajustage", "Mécanique", "Menuiserie", "Sécurité",
   "Transport", "Esthétique", "Sous-traitance", "Location", "Électricité",
   "Électronique", "Livraison Matériaux", "Installation Courant", "Coupe & Couture",
   "Import & Export", "Mine", "Soins Médicaux", "Autre",
