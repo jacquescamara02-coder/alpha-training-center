@@ -123,7 +123,7 @@ const AboutSection = () => {
           <div>
             <div className="reveal opacity-0 translate-y-8 transition-all duration-700" style={{ transitionDelay: "0.1s" }}>
               <span className="mb-2 inline-block rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
-                À Propos de Nous
+                Qui sommes-nous
               </span>
               <h2 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
                 Un centre de formation <span className="text-gradient">multi-services</span>
@@ -134,6 +134,13 @@ const AboutSection = () => {
               <p className="mt-4 leading-relaxed text-muted-foreground">
                 Depuis notre création, nous nous engageons à fournir des formations de qualité et des services professionnels dans plus de 20 domaines. Notre mission est de contribuer au développement des compétences locales et d'accompagner les entreprises et particuliers dans leurs projets.
               </p>
+              <a
+                href="/about"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg hover:bg-primary/90 transition-colors"
+              >
+                En savoir plus
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+              </a>
             </div>
 
             {/* Stats */}
