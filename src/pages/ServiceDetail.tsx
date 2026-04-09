@@ -1,5 +1,12 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Send, CheckCircle, Phone } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   Car, Building2, Wrench, TreePine, Shield, Truck, Sparkles,
   Users, Home, BookOpen, Zap, Cpu, Package, Cable, Scissors,
@@ -140,9 +147,30 @@ const servicesData: Record<string, { icon: any; label: string; image: string; de
   },
 };
 
+const serviceOptions = [
+  "Auto École", "Construction", "Soudure & Ajustage", "Menuiserie", "Sécurité",
+  "Transport", "Esthétique", "Sous-traitance", "Location", "Électricité",
+  "Électronique", "Livraison Matériaux", "Installation Courant", "Coupe & Couture",
+  "Import & Export", "Mine", "Soins Médicaux", "Autre",
+];
+
+const inputClass =
+  "w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors";
+
 const ServiceDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const service = slug ? servicesData[slug] : null;
+  const [showDevis, setShowDevis] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({ name: "", phone: "", email: "", service: "", city: "", message: "" });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const text = `Bonjour Alpha Training Center,%0A%0ANom: ${form.name}%0ATéléphone: ${form.phone}%0AEmail: ${form.email}%0AService: ${form.service || service?.label}%0AVille: ${form.city}%0AMessage: ${form.message}`;
+    window.open(`https://wa.me/243991624845?text=${text}`, "_blank");
+    setSubmitted(true);
+    setTimeout(() => { setSubmitted(false); setShowDevis(false); }, 4000);
+  };
 
   if (!service) {
     return (
@@ -220,16 +248,58 @@ const ServiceDetail = () => {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider">Contact</p>
-                <p className="font-semibold text-foreground">+243 XXX XXX XXX</p>
+                <a href="tel:+243991624845" className="inline-flex items-center gap-2 font-semibold text-foreground hover:text-primary transition-colors">
+                  <Phone className="h-4 w-4" /> +243 991 624 845
+                </a>
               </div>
             </div>
 
-            <Link
-              to="/#contact"
+            <button
+              onClick={() => { setForm({ name: "", phone: "", email: "", service: service?.label || "", city: "", message: "" }); setSubmitted(false); setShowDevis(true); }}
               className="block w-full rounded-xl bg-primary px-6 py-3 text-center font-semibold text-primary-foreground shadow-lg hover:bg-primary/90 transition-colors"
             >
               Demander un devis
-            </Link>
+            </button>
+
+            <Dialog open={showDevis} onOpenChange={setShowDevis}>
+              <DialogContent className="sm:max-w-lg bg-background border-border">
+                <DialogHeader>
+                  <DialogTitle className="font-heading text-xl text-foreground">Demander un devis — {service?.label}</DialogTitle>
+                </DialogHeader>
+                {submitted ? (
+                  <div className="flex flex-col items-center gap-4 p-8 text-center">
+                    <CheckCircle className="h-12 w-12 text-primary" />
+                    <p className="font-heading text-lg font-semibold text-foreground">Demande envoyée !</p>
+                    <p className="text-sm text-muted-foreground">Nous vous répondrons rapidement.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <input required placeholder="Nom complet *" className={inputClass} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                      <input required placeholder="Téléphone *" className={inputClass} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+                    </div>
+                    <input placeholder="Email (optionnel)" type="email" className={inputClass} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+                    <select required className={inputClass} value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })}>
+                      <option value="">Sélectionnez un service *</option>
+                      {serviceOptions.map((s) => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
+                    </select>
+                    <select required className={inputClass} value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })}>
+                      <option value="">Sélectionnez une ville *</option>
+                      <option value="Lubumbashi - Kassapa">Lubumbashi - Kassapa</option>
+                      <option value="Lubumbashi - Bel Air">Lubumbashi - Bel Air</option>
+                      <option value="Lubumbashi - Katuba">Lubumbashi - Katuba</option>
+                      <option value="Kolwezi">Kolwezi</option>
+                    </select>
+                    <textarea required rows={4} placeholder="Décrivez votre besoin *" className={inputClass} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
+                    <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground transition-all hover:opacity-90">
+                      <Send className="h-4 w-4" /> Envoyer via WhatsApp
+                    </button>
+                  </form>
+                )}
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
