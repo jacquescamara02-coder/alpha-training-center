@@ -1,7 +1,37 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, GraduationCap, Shield, Users, Clock, Award, Target, Handshake, CheckCircle } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { toast } from "@/hooks/use-toast";
+
+const serviceOptions = [
+  "Auto-École", "Construction", "Électricité Bâtiment & Industrielle",
+  "Soudure & Ajustage", "Transport", "Location", "Livraison Matériaux",
+  "Transfert d'Argent et de Colis",
+];
 
 const WhyChooseUs = () => {
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({ name: "", phone: "", email: "", service: "", city: "Lubumbashi", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.phone || !formData.service) {
+      toast({ title: "Erreur", description: "Veuillez remplir les champs obligatoires.", variant: "destructive" });
+      return;
+    }
+    const text = `📋 *INSCRIPTION ATC*%0A%0A👤 Nom: ${formData.name}%0A📞 Tél: ${formData.phone}%0A📧 Email: ${formData.email || "N/A"}%0A📚 Service: ${formData.service}%0A🏙️ Ville: ${formData.city}%0A💬 Message: ${formData.message || "N/A"}`;
+    window.open(`https://wa.me/243991624845?text=${text}`, "_blank");
+    setSubmitted(true);
+    setTimeout(() => { setShowForm(false); setSubmitted(false); setFormData({ name: "", phone: "", email: "", service: "", city: "Lubumbashi", message: "" }); }, 3000);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -110,12 +140,9 @@ const WhyChooseUs = () => {
           <h2 className="font-heading text-2xl font-bold text-foreground">Prêt à Commencer ?</h2>
           <p className="mt-3 text-muted-foreground">Rejoignez des centaines d'apprenants qui ont transformé leur avenir avec ATC.</p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <a
-              href="/#inscription"
-              className="rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground transition-all hover:opacity-90"
-            >
+            <Button onClick={() => setShowForm(true)} size="lg">
               S'inscrire maintenant
-            </a>
+            </Button>
             <Link
               to="/"
               className="rounded-lg border border-border px-6 py-3 font-semibold text-foreground transition-all hover:bg-muted"
@@ -125,6 +152,63 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </section>
+
+      {/* Formulaire d'inscription WhatsApp */}
+      <Dialog open={showForm} onOpenChange={setShowForm}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold">Inscription en ligne</DialogTitle>
+          </DialogHeader>
+          {submitted ? (
+            <div className="py-8 text-center">
+              <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+                <CheckCircle className="h-7 w-7 text-primary" />
+              </div>
+              <p className="font-semibold text-foreground">Inscription envoyée avec succès !</p>
+              <p className="text-sm text-muted-foreground">Nous vous contacterons bientôt.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <Label htmlFor="ins-name">Nom complet *</Label>
+                <Input id="ins-name" value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} required />
+              </div>
+              <div>
+                <Label htmlFor="ins-phone">Téléphone *</Label>
+                <Input id="ins-phone" value={formData.phone} onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))} required />
+              </div>
+              <div>
+                <Label htmlFor="ins-email">Email</Label>
+                <Input id="ins-email" type="email" value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} />
+              </div>
+              <div>
+                <Label>Service souhaité *</Label>
+                <Select value={formData.service} onValueChange={v => setFormData(p => ({ ...p, service: v }))}>
+                  <SelectTrigger><SelectValue placeholder="Choisir un service" /></SelectTrigger>
+                  <SelectContent>
+                    {serviceOptions.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label>Ville</Label>
+                <Select value={formData.city} onValueChange={v => setFormData(p => ({ ...p, city: v }))}>
+                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Lubumbashi">Lubumbashi</SelectItem>
+                    <SelectItem value="Kolwezi">Kolwezi</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="ins-msg">Message</Label>
+                <Textarea id="ins-msg" value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))} rows={3} />
+              </div>
+              <Button type="submit" className="w-full">Envoyer via WhatsApp</Button>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
