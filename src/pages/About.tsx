@@ -32,10 +32,10 @@ const About = () => {
               Le Fondateur
             </span>
             <h2 className="font-heading text-3xl font-bold text-foreground">
-              Mr ALPHA
+              ALPHA MUNENE
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Visionnaire et entrepreneur passionné, <strong className="text-foreground">Mr ALPHA</strong> a fondé Alpha Training Center avec une mission claire : offrir des formations professionnelles de qualité accessibles à tous en République Démocratique du Congo.
+              Visionnaire et entrepreneur passionné, <strong className="text-foreground">ALPHA MUNENE</strong> a fondé Alpha Training Center avec une mission claire : offrir des formations professionnelles de qualité accessibles à tous en République Démocratique du Congo.
             </p>
             <p className="mt-4 leading-relaxed text-muted-foreground">
               Fort de plus de 10 ans d'expérience dans le domaine de la formation et des services, il a su bâtir une entreprise reconnue pour son excellence et son engagement envers le développement des compétences locales.
@@ -51,7 +51,7 @@ const About = () => {
                 <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
                   <Users className="h-10 w-10 text-primary" />
                 </div>
-                <h3 className="font-heading text-xl font-bold text-foreground">Mr ALPHA</h3>
+                <h3 className="font-heading text-xl font-bold text-foreground">ALPHA MUNENE</h3>
                 <p className="text-sm text-muted-foreground">Fondateur & Directeur Général</p>
                 <div className="mt-6 grid grid-cols-2 gap-4 text-center">
                   <div>

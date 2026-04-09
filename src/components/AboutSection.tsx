@@ -129,7 +129,7 @@ const AboutSection = () => {
                 Un centre de formation <span className="text-gradient">multi-services</span>
               </h2>
               <p className="mt-6 leading-relaxed text-muted-foreground">
-                <strong className="text-foreground">Alpha Training Center (ATC)</strong> est un centre de formation professionnelle et une entreprise multi-services basée à Lubumbashi et Kolwezi, en République Démocratique du Congo.
+                <strong className="text-foreground">Alpha Training Center (ATC)</strong>, fondé par <strong className="text-foreground">ALPHA MUNENE</strong>, est un centre de formation professionnelle et une entreprise multi-services basée à Lubumbashi et Kolwezi, en République Démocratique du Congo.
               </p>
               <p className="mt-4 leading-relaxed text-muted-foreground">
                 Depuis notre création, nous nous engageons à fournir des formations de qualité et des services professionnels dans plus de 20 domaines. Notre mission est de contribuer au développement des compétences locales et d'accompagner les entreprises et particuliers dans leurs projets.
