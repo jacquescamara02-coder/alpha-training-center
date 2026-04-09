@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      registrations: {
+        Row: {
+          city: string
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          name: string
+          phone: string
+          service: string
+        }
+        Insert: {
+          city?: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name: string
+          phone: string
+          service: string
+        }
+        Update: {
+          city?: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string
+          service?: string
+        }
+        Relationships: []
+      }
       testimonials: {
         Row: {
           approved: boolean
