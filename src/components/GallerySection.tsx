@@ -23,16 +23,16 @@ interface GalleryItem {
 }
 
 const staticItems: GalleryItem[] = [
-  { src: construction1, title: "Construction d'immeuble", category: "Construction" },
-  { src: construction2, title: "Maison moderne achevée", category: "Construction" },
-  { src: construction3, title: "Construction routière", category: "Construction" },
-  { src: formation1, title: "Formation auto-école", category: "Formation" },
-  { src: formation2, title: "Atelier soudure", category: "Formation" },
-  { src: formation3, title: "Formation coupe & couture", category: "Formation" },
-  { src: installation1, title: "Installation électrique", category: "Installation" },
-  { src: installation2, title: "Tableau électrique", category: "Installation" },
-  { src: divers1, title: "Livraison de matériaux", category: "Divers" },
-  { src: divers2, title: "Dépôt de briques & sable", category: "Divers" },
+  { src: construction1, title: "Construction en cours", category: "Construction" },
+  { src: construction2, title: "Alpha Training Center", category: "Construction" },
+  { src: construction3, title: "Chantier de construction", category: "Construction" },
+  { src: formation1, title: "Formation en salle", category: "Formation" },
+  { src: formation2, title: "Auto-école ATC", category: "Formation" },
+  { src: formation3, title: "Séminaire de formation", category: "Formation" },
+  { src: installation1, title: "Livraison de matériaux", category: "Installation" },
+  { src: installation2, title: "Véhicules tout-terrain", category: "Installation" },
+  { src: divers1, title: "Signature de partenariat", category: "Divers" },
+  { src: divers2, title: "Réunion d'équipe", category: "Divers" },
 ];
 
 const categories: Category[] = ["Tout", "Construction", "Formation", "Installation", "Divers"];
