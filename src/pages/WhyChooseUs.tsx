@@ -9,7 +9,29 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 
+const serviceOptions = [
+  "Auto-École", "Construction", "Électricité Bâtiment & Industrielle",
+  "Soudure & Ajustage", "Transport", "Location", "Livraison Matériaux",
+  "Transfert d'Argent et de Colis",
+];
+
 const WhyChooseUs = () => {
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({ name: "", phone: "", email: "", service: "", city: "Lubumbashi", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.phone || !formData.service) {
+      toast({ title: "Erreur", description: "Veuillez remplir les champs obligatoires.", variant: "destructive" });
+      return;
+    }
+    const text = `📋 *INSCRIPTION ATC*%0A%0A👤 Nom: ${formData.name}%0A📞 Tél: ${formData.phone}%0A📧 Email: ${formData.email || "N/A"}%0A📚 Service: ${formData.service}%0A🏙️ Ville: ${formData.city}%0A💬 Message: ${formData.message || "N/A"}`;
+    window.open(`https://wa.me/243991624845?text=${text}`, "_blank");
+    setSubmitted(true);
+    setTimeout(() => { setShowForm(false); setSubmitted(false); setFormData({ name: "", phone: "", email: "", service: "", city: "Lubumbashi", message: "" }); }, 3000);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
