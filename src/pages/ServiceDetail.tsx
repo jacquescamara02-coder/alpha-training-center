@@ -10,7 +10,7 @@ import {
 import {
   Car, Building2, Wrench, TreePine, Shield, Truck, Sparkles,
   Users, Home, BookOpen, Zap, Cpu, Package, Cable, Scissors,
-  ArrowLeftRight, Globe, Mountain, HeartPulse, Briefcase
+  ArrowLeftRight, Globe, Mountain, HeartPulse, Briefcase, Cog
 } from "lucide-react";
 
 import imgAutoEcole from "@/assets/services/auto-ecole.jpg";
@@ -33,6 +33,7 @@ import imgTransfert from "@/assets/services/transfert.jpg";
 import imgImportExport from "@/assets/services/import-export.jpg";
 import imgMine from "@/assets/services/mine.jpg";
 import imgSoinsMedicaux from "@/assets/services/soins-medicaux.jpg";
+import imgMecanique from "@/assets/services/mecanique.jpg";
 
 const servicesData: Record<string, { icon: any; label: string; image: string; description: string; details: string[]; duration?: string }> = {
   "auto-ecole": {
@@ -51,6 +52,12 @@ const servicesData: Record<string, { icon: any; label: string; image: string; de
     description: "Formation et services en soudure et ajustage métallique. Nos experts vous forment aux techniques modernes de soudage et d'assemblage.",
     details: ["Soudure à l'arc", "Soudure MIG/MAG", "Ajustage et assemblage mécanique", "Lecture de plans techniques", "Contrôle qualité des soudures"],
     duration: "3 à 12 mois"
+  },
+  "mecanique": {
+    icon: Cog, label: "Mécanique", image: imgMecanique,
+    description: "Formation et services en mécanique automobile et industrielle. Nos mécaniciens qualifiés assurent l'entretien, la réparation et le diagnostic de tous types de véhicules et machines.",
+    details: ["Mécanique automobile générale", "Réparation de moteurs et boîtes de vitesses", "Diagnostic et entretien préventif", "Mécanique diesel et essence", "Formation pratique en atelier"],
+    duration: "6 à 12 mois"
   },
   "menuiserie": {
     icon: TreePine, label: "Menuiserie", image: imgMenuiserie,
@@ -148,7 +155,7 @@ const servicesData: Record<string, { icon: any; label: string; image: string; de
 };
 
 const serviceOptions = [
-  "Auto École", "Construction", "Soudure & Ajustage", "Menuiserie", "Sécurité",
+  "Auto École", "Construction", "Soudure & Ajustage", "Mécanique", "Menuiserie", "Sécurité",
   "Transport", "Esthétique", "Sous-traitance", "Location", "Électricité",
   "Électronique", "Livraison Matériaux", "Installation Courant", "Coupe & Couture",
   "Import & Export", "Mine", "Soins Médicaux", "Autre",
