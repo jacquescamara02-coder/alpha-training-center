@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { supabase } from "@/integrations/supabase/client";
 
 import construction1 from "@/assets/gallery/construction-1.jpg";
 import construction2 from "@/assets/gallery/construction-2.jpg";
@@ -21,7 +22,7 @@ interface GalleryItem {
   category: Exclude<Category, "Tout">;
 }
 
-const items: GalleryItem[] = [
+const staticItems: GalleryItem[] = [
   { src: construction1, title: "Construction d'immeuble", category: "Construction" },
   { src: construction2, title: "Maison moderne achevée", category: "Construction" },
   { src: construction3, title: "Construction routière", category: "Construction" },
@@ -39,8 +40,28 @@ const categories: Category[] = ["Tout", "Construction", "Formation", "Installati
 const GallerySection = () => {
   const [active, setActive] = useState<Category>("Tout");
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const [dbItems, setDbItems] = useState<GalleryItem[]>([]);
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  // Fetch DB images
+  useEffect(() => {
+    const fetchImages = async () => {
+      const { data } = await supabase
+        .from("gallery_images")
+        .select("*")
+        .order("display_order", { ascending: true });
+      if (data) {
+        setDbItems(data.map((img) => ({
+          src: img.image_url,
+          title: img.title,
+          category: img.category as Exclude<Category, "Tout">,
+        })));
+      }
+    };
+    fetchImages();
+  }, []);
+
+  const items = [...staticItems, ...dbItems];
   const filtered = active === "Tout" ? items : items.filter((i) => i.category === active);
 
   useEffect(() => {
@@ -74,7 +95,6 @@ const GallerySection = () => {
   return (
     <section id="gallery" ref={sectionRef} className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-12 reveal opacity-0 translate-y-8 transition-all duration-700">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
             Portfolio
@@ -87,7 +107,6 @@ const GallerySection = () => {
           </p>
         </div>
 
-        {/* Filters */}
         <div className="flex flex-wrap justify-center gap-3 mb-10 reveal opacity-0 translate-y-8 transition-all duration-700">
           {categories.map((cat) => (
             <button
@@ -104,7 +123,6 @@ const GallerySection = () => {
           ))}
         </div>
 
-        {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filtered.map((item, i) => (
             <div
@@ -133,7 +151,6 @@ const GallerySection = () => {
         </div>
       </div>
 
-      {/* Lightbox */}
       <Dialog open={lightbox !== null} onOpenChange={() => setLightbox(null)}>
         <DialogContent className="max-w-5xl w-[95vw] p-0 border-none bg-black/95 overflow-hidden">
           {lightbox !== null && (
@@ -143,8 +160,6 @@ const GallerySection = () => {
                 alt={filtered[lightbox].title}
                 className="max-h-[80vh] w-auto mx-auto object-contain"
               />
-
-              {/* Navigation */}
               <button
                 onClick={() => navigate(-1)}
                 className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 text-white transition"
@@ -157,8 +172,6 @@ const GallerySection = () => {
               >
                 <ChevronRight className="h-6 w-6" />
               </button>
-
-              {/* Caption */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-center">
                 <span className="inline-block px-3 py-1 rounded-full bg-primary/80 text-primary-foreground text-xs font-semibold mb-2">
                   {filtered[lightbox].category}
