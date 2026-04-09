@@ -10,7 +10,7 @@ import {
 import {
   Car, Building2, Wrench, TreePine, Shield, Truck, Sparkles,
   Users, Home, BookOpen, Zap, Cpu, Package, Cable, Scissors,
-  ArrowLeftRight, Globe, Mountain, HeartPulse, Briefcase
+  ArrowLeftRight, Globe, Mountain, HeartPulse, Briefcase, Cog
 } from "lucide-react";
 
 import imgAutoEcole from "@/assets/services/auto-ecole.jpg";
@@ -33,6 +33,7 @@ import imgTransfert from "@/assets/services/transfert.jpg";
 import imgImportExport from "@/assets/services/import-export.jpg";
 import imgMine from "@/assets/services/mine.jpg";
 import imgSoinsMedicaux from "@/assets/services/soins-medicaux.jpg";
+import imgMecanique from "@/assets/services/mecanique.jpg";
 
 const servicesData: Record<string, { icon: any; label: string; image: string; description: string; details: string[]; duration?: string }> = {
   "auto-ecole": {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {
   Car, Building2, Wrench, TreePine, Shield, Truck, Sparkles,
   Users, Home, BookOpen, Zap, Cpu, Package, Cable, Scissors,
-  ArrowLeftRight, Globe, Mountain, HeartPulse, Briefcase
+  ArrowLeftRight, Globe, Mountain, HeartPulse, Briefcase, Cog
 } from "lucide-react";
 
 import imgAutoEcole from "@/assets/services/auto-ecole.jpg";
@@ -26,11 +26,13 @@ import imgTransfert from "@/assets/services/transfert.jpg";
 import imgImportExport from "@/assets/services/import-export.jpg";
 import imgMine from "@/assets/services/mine.jpg";
 import imgSoinsMedicaux from "@/assets/services/soins-medicaux.jpg";
+import imgMecanique from "@/assets/services/mecanique.jpg";
 
 const services = [
   { icon: Car, label: "Auto École", image: imgAutoEcole, slug: "auto-ecole" },
   { icon: Building2, label: "Construction", image: imgConstruction, slug: "construction" },
   { icon: Wrench, label: "Soudure & Ajustage", image: imgSoudure, slug: "soudure-ajustage" },
+  { icon: Cog, label: "Mécanique", image: imgMecanique, slug: "mecanique" },
   { icon: TreePine, label: "Menuiserie", image: imgMenuiserie, slug: "menuiserie" },
   { icon: Shield, label: "Sécurité", image: imgSecurite, slug: "securite" },
   { icon: Truck, label: "Transport", image: imgTransport, slug: "transport" },
