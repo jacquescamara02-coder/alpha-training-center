@@ -22,6 +22,10 @@ import autoecole1 from "@/assets/gallery/autoecole-1.jpg";
 import autoecole2 from "@/assets/gallery/autoecole-2.jpg";
 import autoecole3 from "@/assets/gallery/autoecole-3.jpg";
 import couture1 from "@/assets/gallery/couture-1.jpg";
+import informatique1 from "@/assets/gallery/informatique-1.jpg";
+import autoecole4 from "@/assets/gallery/autoecole-4.jpg";
+import autoecole5 from "@/assets/gallery/autoecole-5.jpg";
+import autoecole6 from "@/assets/gallery/autoecole-6.jpg";
 
 type Category = "Tout" | "Construction" | "Formation" | "Installation" | "Divers";
 
@@ -51,6 +55,10 @@ const staticItems: GalleryItem[] = [
   { src: autoecole2, title: "Véhicule ATC", category: "Formation" },
   { src: autoecole3, title: "Chauffeur ATC", category: "Formation" },
   { src: couture1, title: "Machines à coudre", category: "Formation" },
+  { src: informatique1, title: "Formation informatique", category: "Formation" },
+  { src: autoecole4, title: "Véhicule auto-école ATC", category: "Formation" },
+  { src: autoecole5, title: "Véhicule ATC Kolwezi", category: "Formation" },
+  { src: autoecole6, title: "Auto-école ATC Lubumbashi", category: "Formation" },
 ];
 
 const categories: Category[] = ["Tout", "Construction", "Formation", "Installation", "Divers"];
