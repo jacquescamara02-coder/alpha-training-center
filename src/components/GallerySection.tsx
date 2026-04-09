@@ -9,10 +9,19 @@ import construction3 from "@/assets/gallery/construction-3.jpg";
 import formation1 from "@/assets/gallery/formation-1.jpg";
 import formation2 from "@/assets/gallery/formation-2.jpg";
 import formation3 from "@/assets/gallery/formation-3.jpg";
+import formation4 from "@/assets/gallery/formation-4.jpg";
 import installation1 from "@/assets/gallery/installation-1.jpg";
 import installation2 from "@/assets/gallery/installation-2.jpg";
 import divers1 from "@/assets/gallery/divers-1.jpg";
 import divers2 from "@/assets/gallery/divers-2.jpg";
+import equipe1 from "@/assets/gallery/equipe-1.jpg";
+import equipe2 from "@/assets/gallery/equipe-2.jpg";
+import equipe3 from "@/assets/gallery/equipe-3.jpg";
+import reunion1 from "@/assets/gallery/reunion-1.jpg";
+import autoecole1 from "@/assets/gallery/autoecole-1.jpg";
+import autoecole2 from "@/assets/gallery/autoecole-2.jpg";
+import autoecole3 from "@/assets/gallery/autoecole-3.jpg";
+import couture1 from "@/assets/gallery/couture-1.jpg";
 
 type Category = "Tout" | "Construction" | "Formation" | "Installation" | "Divers";
 
@@ -29,10 +38,19 @@ const staticItems: GalleryItem[] = [
   { src: formation1, title: "Formation en salle", category: "Formation" },
   { src: formation2, title: "Auto-école ATC", category: "Formation" },
   { src: formation3, title: "Séminaire de formation", category: "Formation" },
+  { src: formation4, title: "Formation pratique engins", category: "Formation" },
   { src: installation1, title: "Livraison de matériaux", category: "Installation" },
   { src: installation2, title: "Véhicules tout-terrain", category: "Installation" },
   { src: divers1, title: "Signature de partenariat", category: "Divers" },
   { src: divers2, title: "Réunion d'équipe", category: "Divers" },
+  { src: equipe1, title: "Équipe ATC sur le terrain", category: "Divers" },
+  { src: equipe2, title: "Apprenants ATC", category: "Formation" },
+  { src: equipe3, title: "Équipe avec engins", category: "Construction" },
+  { src: reunion1, title: "Réunion de direction", category: "Divers" },
+  { src: autoecole1, title: "Véhicule auto-école", category: "Formation" },
+  { src: autoecole2, title: "Véhicule ATC", category: "Formation" },
+  { src: autoecole3, title: "Chauffeur ATC", category: "Formation" },
+  { src: couture1, title: "Machines à coudre", category: "Formation" },
 ];
 
 const categories: Category[] = ["Tout", "Construction", "Formation", "Installation", "Divers"];
