@@ -9,6 +9,8 @@ import About from "./pages/About.tsx";
 import ServiceDetail from "./pages/ServiceDetail.tsx";
 import Contact from "./pages/Contact.tsx";
 import WhyChooseUs from "./pages/WhyChooseUs.tsx";
+import AdminLogin from "./pages/AdminLogin.tsx";
+import Admin from "./pages/Admin.tsx";
 
 const queryClient = new QueryClient();
 
