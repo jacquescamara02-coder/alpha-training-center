@@ -6,7 +6,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
-import { LogOut, Trash2, Check, X, Users, MessageSquare, RefreshCw } from "lucide-react";
+import { LogOut, Trash2, Check, X, Users, MessageSquare, RefreshCw, Image } from "lucide-react";
+import AdminGallery from "@/components/admin/AdminGallery";
+import AdminAddRegistration from "@/components/admin/AdminAddRegistration";
 
 interface Registration {
   id: string;
@@ -29,10 +31,20 @@ interface Testimonial {
   created_at: string;
 }
 
+interface GalleryImage {
+  id: string;
+  title: string;
+  category: string;
+  image_url: string;
+  display_order: number;
+  created_at: string;
+}
+
 const Admin = () => {
   const navigate = useNavigate();
   const [registrations, setRegistrations] = useState<Registration[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -51,18 +63,19 @@ const Admin = () => {
       .maybeSingle();
 
     if (!roleData) { navigate("/admin-login"); return; }
-
     fetchData();
   };
 
   const fetchData = async () => {
     setLoading(true);
-    const [regRes, testRes] = await Promise.all([
+    const [regRes, testRes, galRes] = await Promise.all([
       supabase.from("registrations").select("*").order("created_at", { ascending: false }),
       supabase.from("testimonials").select("*").order("created_at", { ascending: false }),
+      supabase.from("gallery_images").select("*").order("display_order", { ascending: true }),
     ]);
     setRegistrations(regRes.data || []);
     setTestimonials(testRes.data || []);
+    setGalleryImages(galRes.data || []);
     setLoading(false);
   };
 
@@ -96,7 +109,6 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur">
         <div className="container mx-auto flex items-center justify-between px-4 py-4">
           <div>
@@ -143,23 +155,23 @@ const Admin = () => {
           </div>
           <div className="rounded-xl border border-border bg-card p-5">
             <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                <Image className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">{galleryImages.length}</p>
+                <p className="text-xs text-muted-foreground">Images Galerie</p>
+              </div>
+            </div>
+          </div>
+          <div className="rounded-xl border border-border bg-card p-5">
+            <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500/10">
                 <Check className="h-5 w-5 text-green-500" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{testimonials.filter(t => t.approved).length}</p>
                 <p className="text-xs text-muted-foreground">Approuvés</p>
-              </div>
-            </div>
-          </div>
-          <div className="rounded-xl border border-border bg-card p-5">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500/10">
-                <X className="h-5 w-5 text-orange-500" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-foreground">{testimonials.filter(t => !t.approved).length}</p>
-                <p className="text-xs text-muted-foreground">En attente</p>
               </div>
             </div>
           </div>
@@ -170,9 +182,13 @@ const Admin = () => {
           <TabsList className="mb-4">
             <TabsTrigger value="registrations">Inscriptions ({registrations.length})</TabsTrigger>
             <TabsTrigger value="testimonials">Témoignages ({testimonials.length})</TabsTrigger>
+            <TabsTrigger value="gallery">Galerie ({galleryImages.length})</TabsTrigger>
           </TabsList>
 
           <TabsContent value="registrations">
+            <div className="flex justify-end mb-4">
+              <AdminAddRegistration onAdded={fetchData} />
+            </div>
             <div className="rounded-xl border border-border bg-card">
               <Table>
                 <TableHeader>
@@ -253,6 +269,10 @@ const Admin = () => {
                 </TableBody>
               </Table>
             </div>
+          </TabsContent>
+
+          <TabsContent value="gallery">
+            <AdminGallery images={galleryImages} onRefresh={fetchData} />
           </TabsContent>
         </Tabs>
       </main>
