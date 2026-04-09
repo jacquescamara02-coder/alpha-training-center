@@ -74,6 +74,78 @@ export type Database = {
         }
         Relationships: []
       }
+      services: {
+        Row: {
+          contact_phone: string
+          created_at: string
+          description: string
+          display_order: number
+          icon_name: string
+          id: string
+          image_url: string
+          long_description: string
+          name: string
+          slug: string
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          contact_phone?: string
+          created_at?: string
+          description?: string
+          display_order?: number
+          icon_name?: string
+          id?: string
+          image_url?: string
+          long_description?: string
+          name: string
+          slug: string
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          contact_phone?: string
+          created_at?: string
+          description?: string
+          display_order?: number
+          icon_name?: string
+          id?: string
+          image_url?: string
+          long_description?: string
+          name?: string
+          slug?: string
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: []
+      }
+      site_content: {
+        Row: {
+          content: string
+          content_key: string
+          id: string
+          subtitle: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content?: string
+          content_key: string
+          id?: string
+          subtitle?: string
+          title?: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          content_key?: string
+          id?: string
+          subtitle?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       testimonials: {
         Row: {
           approved: boolean
