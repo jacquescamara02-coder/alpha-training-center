@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import {
   Car, Building2, Wrench, TreePine, Shield, Truck, Sparkles,
   Users, Home, BookOpen, Zap, Cpu, Package, Cable, Scissors,
@@ -27,26 +28,26 @@ import imgMine from "@/assets/services/mine.jpg";
 import imgSoinsMedicaux from "@/assets/services/soins-medicaux.jpg";
 
 const services = [
-  { icon: Car, label: "Auto École", image: imgAutoEcole },
-  { icon: Building2, label: "Construction", image: imgConstruction },
-  { icon: Wrench, label: "Soudure & Ajustage", image: imgSoudure },
-  { icon: TreePine, label: "Menuiserie", image: imgMenuiserie },
-  { icon: Shield, label: "Sécurité", image: imgSecurite },
-  { icon: Truck, label: "Transport", image: imgTransport },
-  { icon: Sparkles, label: "Esthétique", image: imgEsthetique },
-  { icon: Briefcase, label: "Sous-traitance", image: imgSousTraitance },
-  { icon: Users, label: "Déploiement Femmes Ménagères", image: imgFemmesMenageres },
-  { icon: Home, label: "Location", image: imgLocation },
-  { icon: BookOpen, label: "Encadrement Élèves & Adultes", image: imgEncadrement },
-  { icon: Zap, label: "Électricité", image: imgElectricite },
-  { icon: Cpu, label: "Électronique", image: imgElectronique },
-  { icon: Package, label: "Livraison Matériaux", image: imgLivraison },
-  { icon: Cable, label: "Installation Courant", image: imgInstallationCourant },
-  { icon: Scissors, label: "Coupe & Couture", image: imgCouture },
-  { icon: ArrowLeftRight, label: "Transfert d'Argent & de Colis", image: imgTransfert },
-  { icon: Globe, label: "Import & Export", image: imgImportExport },
-  { icon: Mountain, label: "Mine", image: imgMine },
-  { icon: HeartPulse, label: "Soins Médicaux", image: imgSoinsMedicaux },
+  { icon: Car, label: "Auto École", image: imgAutoEcole, slug: "auto-ecole" },
+  { icon: Building2, label: "Construction", image: imgConstruction, slug: "construction" },
+  { icon: Wrench, label: "Soudure & Ajustage", image: imgSoudure, slug: "soudure-ajustage" },
+  { icon: TreePine, label: "Menuiserie", image: imgMenuiserie, slug: "menuiserie" },
+  { icon: Shield, label: "Sécurité", image: imgSecurite, slug: "securite" },
+  { icon: Truck, label: "Transport", image: imgTransport, slug: "transport" },
+  { icon: Sparkles, label: "Esthétique", image: imgEsthetique, slug: "esthetique" },
+  { icon: Briefcase, label: "Sous-traitance", image: imgSousTraitance, slug: "sous-traitance" },
+  { icon: Users, label: "Déploiement Femmes Ménagères", image: imgFemmesMenageres, slug: "femmes-menageres" },
+  { icon: Home, label: "Location", image: imgLocation, slug: "location" },
+  { icon: BookOpen, label: "Encadrement Élèves & Adultes", image: imgEncadrement, slug: "encadrement" },
+  { icon: Zap, label: "Électricité", image: imgElectricite, slug: "electricite" },
+  { icon: Cpu, label: "Électronique", image: imgElectronique, slug: "electronique" },
+  { icon: Package, label: "Livraison Matériaux", image: imgLivraison, slug: "livraison-materiaux" },
+  { icon: Cable, label: "Installation Courant", image: imgInstallationCourant, slug: "installation-courant" },
+  { icon: Scissors, label: "Coupe & Couture", image: imgCouture, slug: "couture" },
+  { icon: ArrowLeftRight, label: "Transfert d'Argent & de Colis", image: imgTransfert, slug: "transfert" },
+  { icon: Globe, label: "Import & Export", image: imgImportExport, slug: "import-export" },
+  { icon: Mountain, label: "Mine", image: imgMine, slug: "mine" },
+  { icon: HeartPulse, label: "Soins Médicaux", image: imgSoinsMedicaux, slug: "soins-medicaux" },
 ];
 
 const ServicesSection = () => {
@@ -81,7 +82,8 @@ const ServicesSection = () => {
         </div>
         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {services.map((s, i) => (
-            <div
+            <Link
+              to={`/service/${s.slug}`}
               key={i}
               className="reveal opacity-0 translate-y-8 transition-all duration-500 group rounded-xl border border-border bg-card overflow-hidden hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-2"
               style={{ transitionDelay: `${i * 0.05}s` }}
@@ -100,10 +102,11 @@ const ServicesSection = () => {
                   <s.icon className="h-5 w-5" />
                 </div>
               </div>
-              <div className="p-4">
+              <div className="p-4 flex items-center justify-between">
                 <h3 className="font-heading text-sm font-semibold text-foreground">{s.label}</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
