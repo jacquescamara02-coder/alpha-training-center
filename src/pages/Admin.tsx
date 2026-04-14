@@ -6,11 +6,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
-import { LogOut, Trash2, Check, X, Users, MessageSquare, RefreshCw, Image, Settings, FileText } from "lucide-react";
+import { LogOut, Trash2, Check, X, Users, MessageSquare, RefreshCw, Image, Settings, FileText, ShieldCheck } from "lucide-react";
 import AdminGallery from "@/components/admin/AdminGallery";
 import AdminAddRegistration from "@/components/admin/AdminAddRegistration";
 import AdminServices from "@/components/admin/AdminServices";
 import AdminContent from "@/components/admin/AdminContent";
+import AdminUsers from "@/components/admin/AdminUsers";
 
 interface Registration {
   id: string;
