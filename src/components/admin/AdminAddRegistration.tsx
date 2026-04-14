@@ -14,6 +14,7 @@ const serviceOptions = [
   "Construction",
   "Soudure & Ajustage",
   "Électricité",
+  "Mécanique",
   "Transport",
   "Location",
   "Livraison Matériaux",
