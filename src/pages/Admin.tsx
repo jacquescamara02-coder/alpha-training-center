@@ -147,6 +147,7 @@ const Admin = () => {
             <TabsTrigger value="services">⚙️ Services</TabsTrigger>
             <TabsTrigger value="gallery">🖼️ Galerie</TabsTrigger>
             <TabsTrigger value="content">📝 Contenu</TabsTrigger>
+            <TabsTrigger value="admins">🛡️ Administrateurs</TabsTrigger>
           </TabsList>
 
           <TabsContent value="registrations">
@@ -245,6 +246,10 @@ const Admin = () => {
 
           <TabsContent value="content">
             <AdminContent items={siteContent} onRefresh={fetchData} />
+          </TabsContent>
+
+          <TabsContent value="admins">
+            <AdminUsers onRefresh={fetchData} />
           </TabsContent>
         </Tabs>
       </main>
