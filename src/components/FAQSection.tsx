@@ -7,7 +7,7 @@ import {
 
 const faqs = [
   { q: "Quels sont les horaires d'ouverture ?", a: "Nous sommes ouverts du lundi au samedi de 7h00 à 18h00. Pour les urgences, vous pouvez nous contacter via WhatsApp à tout moment." },
-  { q: "Comment s'inscrire à l'auto-école ?", a: "Vous pouvez vous inscrire directement dans nos bureaux à Kassapa, Bel Air ou Katuba à Lubumbashi, ou à Kolwezi. Munissez-vous de votre pièce d'identité et de 2 photos passeport." },
+  { q: "Comment s'inscrire à l'auto-école ?", a: "Vous pouvez vous inscrire directement dans nos bureaux du 30 Juin / Kilela-Balanda ou à Kassapa à Lubumbashi, ou à Kolwezi. Munissez-vous de votre pièce d'identité et de 2 photos passeport." },
   { q: "Proposez-vous des formations à distance ?", a: "La partie théorique de certaines formations peut se faire en ligne. Contactez-nous pour plus de détails sur les formations disponibles à distance." },
   { q: "Quels sont vos tarifs ?", a: "Nos tarifs varient selon les services. Demandez un devis gratuit via notre formulaire ou contactez-nous directement pour obtenir un prix personnalisé." },
   { q: "Intervenez-vous en dehors de Lubumbashi ?", a: "Oui, nous intervenons également à Kolwezi et pouvons étudier des projets dans d'autres villes du Haut-Katanga sur demande." },

@@ -294,9 +294,8 @@ const ServiceDetail = () => {
                     </select>
                     <select required className={inputClass} value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })}>
                       <option value="">Sélectionnez une ville *</option>
+                      <option value="Lubumbashi - Du 30 Juin / Kilela-Balanda">Lubumbashi - Du 30 Juin / Kilela-Balanda</option>
                       <option value="Lubumbashi - Kassapa">Lubumbashi - Kassapa</option>
-                      <option value="Lubumbashi - Bel Air">Lubumbashi - Bel Air</option>
-                      <option value="Lubumbashi - Katuba">Lubumbashi - Katuba</option>
                       <option value="Kolwezi">Kolwezi</option>
                     </select>
                     <textarea required rows={4} placeholder="Décrivez votre besoin *" className={inputClass} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />

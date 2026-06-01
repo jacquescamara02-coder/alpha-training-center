@@ -1,9 +1,8 @@
-import { MapPin, Phone, Clock } from "lucide-react";
+import { MapPin, Phone, Clock, ShieldCheck, BadgeCheck } from "lucide-react";
 
 const locations = [
-  { name: "Lubumbashi - Kassapa", address: "Quartier Kassapa, Lubumbashi" },
-  { name: "Lubumbashi - Bel Air", address: "Quartier Bel Air, Lubumbashi" },
-  { name: "Lubumbashi - Katuba", address: "Commune de Katuba, Lubumbashi" },
+  { name: "Lubumbashi — Du 30 Juin", address: "Kilela-Balanda / Campus, Lubumbashi" },
+  { name: "Lubumbashi — Kassapa", address: "Quartier Kassapa, Lubumbashi" },
   { name: "Kolwezi", address: "Ville de Kolwezi" },
 ];
 
@@ -28,6 +27,33 @@ const MapSection = () => {
 
         <div className="grid gap-8 lg:grid-cols-2">
           <div className="space-y-4">
+            {/* Accréditation officielle */}
+            <div className="rounded-xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card to-card p-5">
+              <div className="flex items-start gap-3">
+                <div className="rounded-lg bg-primary/15 p-2 text-primary">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                      <BadgeCheck className="h-3 w-3" /> Agréé par l'État
+                    </span>
+                  </div>
+                  <h3 className="mt-2 font-heading text-sm font-bold text-foreground">
+                    Centre de Formation Public
+                  </h3>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    <span className="font-semibold text-foreground">Arrêté Ministériel</span> N°500/CABMN/MNFPM/AKK/KMJ/Maf/2024
+                    du 30/05/2024 « ECOC »
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    <span className="font-semibold text-foreground">Matricule :</span>{" "}
+                    <span className="font-mono text-primary">S700543P</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {locations.map((l, i) => (
               <div key={i} className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/40">
                 <div className="rounded-lg bg-primary/10 p-2 text-primary">

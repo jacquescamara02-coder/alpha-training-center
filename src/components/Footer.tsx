@@ -23,9 +23,14 @@ const Footer = () => {
             <p className="mt-1 text-sm text-muted-foreground">Auto École & Centre de Formation Professionnelle</p>
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-xs text-muted-foreground">
-            <span>Lubumbashi: Kassapa • Bel Air • Katuba</span>
+            <span>Lubumbashi : Du 30 Juin / Kilela-Balanda • Kassapa</span>
             <span>Kolwezi</span>
             <a href="tel:+243991624845" className="text-primary hover:underline">+243 991 624 845</a>
+          </div>
+          <div className="max-w-2xl rounded-lg border border-primary/20 bg-primary/5 px-4 py-2 text-center text-[11px] leading-relaxed text-muted-foreground">
+            <span className="font-semibold text-foreground">Centre de Formation Public</span> — Agréé par Arrêté Ministériel
+            N°500/CABMN/MNFPM/AKK/KMJ/Maf/2024 du 30/05/2024 « ECOC » · Matricule&nbsp;
+            <span className="font-mono text-primary">S700543P</span>
           </div>
           <div className="flex items-center gap-4">
             <a
