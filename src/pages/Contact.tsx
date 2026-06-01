@@ -51,7 +51,7 @@ const Contact = () => {
             {[
               { icon: Phone, title: "Téléphone", lines: ["+243 XXX XXX XXX", "+243 XXX XXX XXX"] },
               { icon: Mail, title: "Email", lines: ["contact@alphatrainingcenter.com"] },
-              { icon: MapPin, title: "Adresse", lines: ["Lubumbashi, RDC", "Kolwezi, RDC"] },
+              { icon: MapPin, title: "Adresse", lines: ["Lubumbashi : Du 30 Juin / Kilela-Balanda ; Kassapa", "Kolwezi, RDC"] },
               { icon: Clock, title: "Horaires", lines: ["Lun - Sam : 8h00 - 17h00", "Dim : Fermé"] },
             ].map((item, i) => (
               <div key={i} className="flex gap-4 rounded-xl border border-border bg-card p-5 hover:border-primary/40 transition-colors">
