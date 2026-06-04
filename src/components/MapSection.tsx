@@ -1,7 +1,7 @@
 import { MapPin, Phone, Clock, ShieldCheck, BadgeCheck } from "lucide-react";
 
 const locations = [
-  { name: "Lubumbashi — Du 30 Juin", address: "Kilela-Balanda / Campus, Lubumbashi" },
+  { name: "Lubumbashi — Du 30 Juin / Kilela-Balanda", address: "Kilela-Balanda" },
   { name: "Lubumbashi — Kassapa", address: "Quartier Kassapa, Lubumbashi" },
   { name: "Kolwezi", address: "Ville de Kolwezi" },
 ];
